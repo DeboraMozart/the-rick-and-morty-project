@@ -1,19 +1,15 @@
 "use client";
 import { get } from "http";
-import { useState } from "react";
-export default function Home() {
-  const [episode, setEpisode] = useState<string>("");
-  const getEpisodes = async () => {
-    const response = await fetch("https://rickandmortyapi.com/api/episode");
-    const ep = await response.json();
-    setEpisode(ep.results[3].name);
+import SearchBar from "@/components/SearchBar";
 
-    console.log(episode);
-  };
+export default function Home() {
+
   return (
     <>
-      <h1>aqui {episode}</h1>
-      <button onClick={getEpisodes}>click me</button>
+      <SearchBar />
+      <h1 className="text-white text-xl mt-2 ml-5">Episodes</h1>
+      <div className="grid grid-cols-2 gap-4 justify-between">
+      </div>
     </>
   );
 }
