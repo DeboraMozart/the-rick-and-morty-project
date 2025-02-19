@@ -2,7 +2,8 @@
 import { createContext, useContext } from "react"
 
 interface DataContextType {
-    fetchData: () => Promise<void>;
+    fetchEpisodes: () => Promise<void>;
+    nameEpisodes: string
 }
 
 export const DataContext = createContext<DataContextType | undefined>(undefined); 

@@ -1,11 +1,13 @@
 "use client";
-import { useData } from "@/hooks/";
+import { useData } from "@/hooks/useData";
 import { DataContext } from "./DataContext";
 import { Children } from "react";
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const { fetchData } = useData();
+  const { fetchEpisodes, nameEpisodes } = useData();
   return (
-    <DataContext.Provider value={{fetchData}}>{children}</DataContext.Provider>
-  )
+    <DataContext.Provider value={{ fetchEpisodes, nameEpisodes }}>
+      {children}
+    </DataContext.Provider>
+  );
 };
