@@ -1,21 +1,25 @@
 "use client";
 import { useEffect } from "react";
-import { get } from "http";
 import SearchBar from "@/components/SearchBar";
 import { useFetchContent } from "@/context/DataContext";
+
 export default function Home() {
-  const { fetchEpisodes, nameEpisodes } = useFetchContent();
-  useEffect(() => {
-    fetchEpisodes();
-  }, []);
-  console.log(fetchEpisodes);
-  console.log(nameEpisodes);
+  const { infoEpisodes } = useFetchContent();
+
+  if (!infoEpisodes || infoEpisodes.length === 0) {
+    return <p className="text-white">Loading...</p>;
+  }
+
+  const currentInfoEpisodes = infoEpisodes;
   return (
     <>
       <SearchBar />
-      <h1 className="text-white text-xl mt-2 ml-5">Episodes</h1>
-      <h1 className="text-white">{nameEpisodes.name}</h1>
-      <div className="grid grid-cols-2 gap-4 justify-between"></div>
+      {currentInfoEpisodes.map(info)=>{return (
+        <section>
+          <h1 className="text-white text-xl mt-2 ml-5">Episodes</h1>
+                <h1 className="text-white">{info.name}</h1>
+                <div className="grid grid-cols-2 gap-4 justify-between"></div>
+        </section>)}}
     </>
   );
 }

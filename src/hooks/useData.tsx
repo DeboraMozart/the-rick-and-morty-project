@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 interface Episodes {
   id: number;
   name: string;
@@ -19,23 +20,20 @@ export const useData = () => {
       if (!response.ok) {
         throw new Error("Error trying to fetch episodes");
       }
-      const data = response.json();
-
-      setInfoEpisodes(data.);
-      if (response.ok) {
-        setNameEpisode(newData);
-        console.log("fine");
-      } else {
-        console.log("Error trying to fetch episode name");
-      }
+      const data = await response.json();
+    
+      setInfoEpisodes(data.results);
+      
     } catch (err) {
       console.log("You've got an ", err);
     }
   };
-
+  useEffect(() => {
+    fetchEpisodes();
+  }, []);
   //const fetchCharacters = async () => {};
   return {
     fetchEpisodes,
-    nameEpisodes,
+    infoEpisodes
   };
 };
