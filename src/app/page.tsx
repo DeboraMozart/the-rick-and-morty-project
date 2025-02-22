@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import SearchBar from "@/components/SearchBar";
 import { useFetchContent } from "@/context/DataContext";
 
@@ -14,12 +13,22 @@ export default function Home() {
   return (
     <>
       <SearchBar />
-      {currentInfoEpisodes.map(info)=>{return (
-        <section>
-          <h1 className="text-white text-xl mt-2 ml-5">Episodes</h1>
+      <div className="flex items-center">
+        <h1 className="text-white text-xl mt-2 ml-5">Episodes</h1>
+        {currentInfoEpisodes.map((info) => {
+          return (
+            <section
+              className="w-auto grid grid-rows-3 grid-flow-col gap-4"
+              key={info.id}
+            >
+              <div>
+                <div className="w-10 h-10 bg-black"></div>
                 <h1 className="text-white">{info.name}</h1>
-                <div className="grid grid-cols-2 gap-4 justify-between"></div>
-        </section>)}}
+              </div>
+            </section>
+          );
+        })}
+      </div>
     </>
   );
 }
