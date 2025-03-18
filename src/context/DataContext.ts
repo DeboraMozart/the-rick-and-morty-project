@@ -11,9 +11,31 @@ interface Episodes {
   created: string;
 }
 
+interface Characters {
+    id: number;
+    name: string;
+    status: string;
+    species: string;
+    type: string;
+    gender: string;
+    origin: {
+      name: string;
+      url: string;
+    };
+    location: {
+      name: string;
+      url: string;
+    };
+    image: string;
+    episode: string[];
+  
+  }
 interface DataContextType {
-    fetchEpisodes: () => Promise<void>;
     infoEpisodes: Episodes[];
+    infoCharacters: Characters[];
+    page: number;
+    setPage: (page:number) => void;
+ 
 }
 
 export const DataContext = createContext<DataContextType | undefined>(undefined); 

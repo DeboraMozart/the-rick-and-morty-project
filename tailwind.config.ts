@@ -7,11 +7,18 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    variants: {
+      extend: {
+        animation: ['motion-safe'],
+      }
+    },
     extend: {
+      
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      
     },
   },
   plugins: [],

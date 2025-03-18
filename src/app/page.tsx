@@ -2,6 +2,7 @@
 import SearchBar from "@/components/SearchBar";
 import { useFetchContent } from "@/context/DataContext";
 import { BsPlayCircle } from "react-icons/bs";
+import PaginationButton from "@/components/PaginationButton";
 export default function Home() {
   const { infoEpisodes } = useFetchContent();
 
@@ -12,22 +13,28 @@ export default function Home() {
   const currentInfoEpisodes = infoEpisodes;
   return (
     <>
-      <SearchBar />
-      <div className="flex flex-col items-center">
-        <h1 className="text-white text-xl mt-2 mb-2 ml-5">Episodes</h1>
-        <div className="grid grid-cols-2 gap-4">
-          {currentInfoEpisodes.map((info) => {
-            return (
-              <div key={info.id}>
-                <div>
-                  <div className="w-44
-                   h-36 bg-black hover:cursor-pointer flex items-center justify-center"><BsPlayCircle color="white" size={40}/></div>
-                  <h1 className="text-white mt-2 flex flex-col">Episode{info.episode}{info.name}</h1>
-                </div>
-              </div>
-            );
-          })}
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-white text-xl mt-5 mb-5 ml-5">Episodes</h1>
+        <div className="grid grid-cols-2 gap-y-8 md:gap-x-40 place-items-center w-full max-w-lg mx-auto">
+  {currentInfoEpisodes.map((info) => {
+    return (
+      <div key={info.id} className="flex justify-center">
+        <div className="flex flex-col items-center min-h-[200px] w-full">
+          <div
+            className="w-44 h-36 rounded-xl bg-black flex items-center justify-center hover:bg-slate-900 cursor-pointer transform motion-safe:hover:scale-105 sm:motion-safe:hover:animate-spin"
+          >
+            <BsPlayCircle color="white" size={40} />
+          </div>
+          <h1 className="text-white mt-2 text-center w-full px-2">
+            {info.episode} {info.name}
+          </h1>
         </div>
+      </div>
+    );
+  })}
+</div>
+
+        <PaginationButton />
       </div>
     </>
   );
