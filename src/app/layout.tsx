@@ -29,8 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SearchBar />
         <DataProvider>
+     
+          <SearchBar />
           <main>{children}</main>
         </DataProvider>
       </body>

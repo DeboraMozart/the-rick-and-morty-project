@@ -18,7 +18,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      
+      backgroundImage: {
+        'background-ep': "url('/rick-morty-cover.jpg')",
+       },
     },
   },
   plugins: [],

@@ -34,6 +34,8 @@ interface DataContextType {
     infoEpisodes: Episodes[];
     infoCharacters: Characters[];
     page: number;
+    searchItem: string;
+    setSearchItem: (searchItem: string) => void;
     setPage: (page:number) => void;
  
 }
