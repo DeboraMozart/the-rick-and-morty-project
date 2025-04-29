@@ -1,12 +1,14 @@
 "use client";
 import { useFetchContent } from "@/context/DataContext";
-import PaginationButton from "@/components/PaginationButton";
+import PaginationButtonCharacters from "@/components/PaginationButtonCharacters";
 import React from "react";
 import Image from "next/image";
+import { useSearch } from "@/hooks/useSearch";
 
 export default function CharactersPage() {
   const { infoCharacters } = useFetchContent();
-
+  const searchResults = useSearch();
+ 
   if (!infoCharacters || infoCharacters.length === 0) {
     return <p className="text-white">Loading...</p>;
   }
@@ -37,7 +39,9 @@ export default function CharactersPage() {
                     </h1>
                     <p
                       className={`font-semibold text-sm ${
-                        info.status === "Dead" ? "text-red-400" : "text-green-300"
+                        info.status === "Dead"
+                          ? "text-red-400"
+                          : "text-green-300"
                       }`}
                     >
                       {info.status} - {info.species}
@@ -57,7 +61,7 @@ export default function CharactersPage() {
           })}
         </div>
 
-        <PaginationButton />
+        <PaginationButtonCharacters />
       </div>
     </div>
   );

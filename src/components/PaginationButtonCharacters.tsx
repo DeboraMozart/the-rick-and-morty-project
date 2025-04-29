@@ -3,27 +3,29 @@ import React from "react";
 import { MdNavigateBefore } from "react-icons/md";
 import { MdNavigateNext } from "react-icons/md";
 import { useFetchContent } from "@/context/DataContext";
+import { SiHomepage } from "react-icons/si";
 
-export default function PaginationButton() {
-  const { page, setPage } = useFetchContent();
+export default function PaginationButtonCharacters() {
+  const { charactersPage, setCharactersPage } = useFetchContent();
 
   return (
     <div className="flex w-96 justify-around mt-9 mb-6">
       <button
         className="w-24 h-9 bg-white border-solid border-2 flex justify-center items-center rounded-md motion-safe:hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
         onClick={() => {
-          setPage(page - 1);
+          setCharactersPage(charactersPage - 1);
         }}
-        disabled={page < 2}
+        disabled={charactersPage < 2}
       >
         <MdNavigateBefore />
       </button>
+      <span className="text-white">{charactersPage}</span>
       <button
         className={`w-24 h-9 bg-white border-solid border-2 flex justify-center items-center rounded-md motion-safe:hover:scale-105 disabled:opacity-50 disabled:hover:scale-100`}
         onClick={() => {
-          setPage(page + 1);
+          setCharactersPage(charactersPage + 1);
         }}
-        disabled={page === 3}
+        disabled={charactersPage === 3}
       >
         <MdNavigateNext />
       </button>

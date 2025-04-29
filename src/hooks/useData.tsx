@@ -1,5 +1,7 @@
 "use client";
 
+import CharactersPage from "@/app/characters/page";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 interface Episodes {
@@ -41,14 +43,32 @@ interface CharactersResponse {
   results: Characters[];
 }
 
-export const useData = (page: number) => {
+export const useData = (homePage: number, charactersPage: number) => {
   const [infoEpisodes, setInfoEpisodes] = useState<Episodes[]>([]);
+  const [allEpisodes, setAllEpisodes] = useState<Episodes[]>([]);
   const [infoCharacters, setInfoCharacters] = useState<Characters[]>([]);
 
+  const fetchAllEpisodes = async () => {
+    try {
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/episode`
+      );
+      if (!response.ok) {
+        throw new Error("Error trying to fetch episodes");
+      }
+      const data = await response.json();
+
+      setAllEpisodes(data.results);
+    } catch (error) {
+      console.log("You've got an ", error);
+    }
+  };
+
+  
   const fetchEpisodes = async () => {
     try {
       const response = await fetch(
-        `https://rickandmortyapi.com/api/episode/?page=${page}`
+        `https://rickandmortyapi.com/api/episode/?page=${homePage}`
       );
       if (!response.ok) {
         throw new Error("Error trying to fetch episodes");
@@ -64,7 +84,7 @@ export const useData = (page: number) => {
   const fetchCharacters = async () => {
     try {
       const response = await fetch(
-        "https://rickandmortyapi.com/api/character/"
+        `https://rickandmortyapi.com/api/character/?page=${charactersPage}`
       );
       if (!response.ok) {
         throw new Error("Error trying to fetch episodes");
@@ -78,11 +98,18 @@ export const useData = (page: number) => {
   };
   useEffect(() => {
     fetchEpisodes();
-    fetchCharacters();
-  }, [page]);
+  }, [homePage]);
 
+  useEffect(() => {
+    fetchCharacters();
+  }, [charactersPage]);
+  
+  useEffect(() => {
+    fetchAllEpisodes();
+  }, []);
   return {
     infoEpisodes,
     infoCharacters,
+    allEpisodes
   };
 };

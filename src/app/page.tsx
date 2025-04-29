@@ -1,18 +1,14 @@
 "use client";
-import SearchBar from "@/components/SearchBar";
 import { useFetchContent } from "@/context/DataContext";
 import { BsPlayCircle } from "react-icons/bs";
-import PaginationButton from "@/components/PaginationButton";
-import { useSearch } from "@/hooks/useSearch"; // Importe o hook useSearch
-import { use, useEffect, useMemo } from "react";
+import { useSearch } from "@/hooks/useSearch";
+import PaginationButtonHome from "@/components/PaginationButtonHome";
 
 export default function Home() {
   const { infoEpisodes } = useFetchContent();
   const searchResults = useSearch(); 
   
-  useEffect(()=>{   
-  },[searchResults]);
-  
+
   if (!infoEpisodes || infoEpisodes.length === 0) {
     return <p className="text-white">Loading...</p>;
   }
@@ -37,7 +33,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <PaginationButton />
+        <PaginationButtonHome />
       </div>
     </>
   );

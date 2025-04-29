@@ -32,12 +32,14 @@ interface Characters {
   }
 interface DataContextType {
     infoEpisodes: Episodes[];
+    allEpisodes: Episodes[];
     infoCharacters: Characters[];
-    page: number;
+    homePage: number;
+    charactersPage: number;
     searchItem: string;
     setSearchItem: (searchItem: string) => void;
-    setPage: (page:number) => void;
- 
+    setHomePage: (homePage:number) => void;
+    setCharactersPage: (charactersPage:number) => void;    
 }
 
 export const DataContext = createContext<DataContextType | undefined>(undefined); 

@@ -5,13 +5,14 @@ import { Children, useState } from "react";
 import { useSearch } from "@/hooks/useSearch";
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [page, setPage] = useState(1);
+  const [homePage, setHomePage] = useState(1);
+  const [charactersPage, setCharactersPage] = useState(1);
   const [searchItem, setSearchItem] = useState("");
-  const { infoEpisodes, infoCharacters } = useData(page);
+  const { infoEpisodes, infoCharacters, allEpisodes } = useData(homePage, charactersPage);
 
   return (
     <DataContext.Provider
-      value={{ infoEpisodes, infoCharacters, searchItem, setSearchItem, page, setPage }}
+      value={{ infoEpisodes, allEpisodes, infoCharacters, searchItem, setSearchItem, homePage, setHomePage, charactersPage,   setCharactersPage}}
     >
       {children}
     </DataContext.Provider>
