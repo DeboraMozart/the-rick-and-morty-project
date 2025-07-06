@@ -72,7 +72,7 @@ export const useData = (homePage: number, charactersPage: number) => {
         const data = await response.json();
         setAllCharecters(data.results);
       }catch(error){
-        console.log("You´ve got an error");
+        console.log("You´ve got an error", error);
       }
     }
   
