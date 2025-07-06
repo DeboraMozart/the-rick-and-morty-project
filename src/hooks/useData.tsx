@@ -1,7 +1,5 @@
 "use client";
 
-import CharactersPage from "@/app/characters/page";
-import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 interface Episodes {
@@ -46,6 +44,7 @@ interface CharactersResponse {
 export const useData = (homePage: number, charactersPage: number) => {
   const [infoEpisodes, setInfoEpisodes] = useState<Episodes[]>([]);
   const [allEpisodes, setAllEpisodes] = useState<Episodes[]>([]);
+  const [allCharacters, setAllCharecters] = useState<Characters[]>([]);
   const [infoCharacters, setInfoCharacters] = useState<Characters[]>([]);
 
   const fetchAllEpisodes = async () => {
@@ -64,6 +63,18 @@ export const useData = (homePage: number, charactersPage: number) => {
     }
   };
 
+    const fetchAllCharacters = async () => {
+      try{
+        const response = await fetch("https://rickandmortyapi.com/api/character")
+        if(!response.ok){
+          throw new Error ("Error trying to fetch episodes"); 
+        }
+        const data = await response.json();
+        setAllCharecters(data.results);
+      }catch(error){
+        console.log("You´ve got an error");
+      }
+    }
   
   const fetchEpisodes = async () => {
     try {
@@ -107,9 +118,16 @@ export const useData = (homePage: number, charactersPage: number) => {
   useEffect(() => {
     fetchAllEpisodes();
   }, []);
+
+  useEffect(()=>{
+    fetchAllCharacters();
+ 
+  },[]);
+  
   return {
     infoEpisodes,
     infoCharacters,
-    allEpisodes
+    allEpisodes,
+    allCharacters
   };
 };

@@ -52,16 +52,6 @@ export default function AsideMenuButton() {
               >
                 Characters
               </button>
-              <button
-                className={`flex items-start ${
-                  classStyle === "location" ? "bg-slate-500 w-full" : ""
-                }`}
-                onClick={() => {
-                  setRoute("location");
-                }}
-              >
-                Location
-              </button>
             </div>
           </div>
         </div>

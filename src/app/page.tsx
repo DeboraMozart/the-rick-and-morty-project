@@ -6,7 +6,7 @@ import PaginationButtonHome from "@/components/PaginationButtonHome";
 
 export default function Home() {
   const { infoEpisodes } = useFetchContent();
-  const searchResults = useSearch(); 
+  const { filteredEp }  = useSearch(); 
   
 
   if (!infoEpisodes || infoEpisodes.length === 0) {
@@ -18,7 +18,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-white text-xl mt-5 mb-5 ml-5">Episodes</h1>
         <div className="grid grid-cols-2 gap-y-8 md:gap-x-40 place-items-center w-full max-w-lg mx-auto">
-          {searchResults.map((info) => ( 
+          {filteredEp.map((info) => ( 
             <div key={info.id} className="flex justify-center ">
               <div className="flex flex-col items-center min-h-[200px] w-full ">
                 <div

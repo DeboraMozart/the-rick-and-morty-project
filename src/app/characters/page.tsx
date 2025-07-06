@@ -7,19 +7,18 @@ import { useSearch } from "@/hooks/useSearch";
 
 export default function CharactersPage() {
   const { infoCharacters } = useFetchContent();
-  const searchResults = useSearch();
+  const {filteredCharacters} = useSearch();
  
   if (!infoCharacters || infoCharacters.length === 0) {
     return <p className="text-white">Loading...</p>;
   }
-  const currentCharacters = infoCharacters;
-
+ 
   return (
     <div>
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-white text-xl mt-5 mb-5 ml-5">Characters</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {currentCharacters.map((info) => {
+          {filteredCharacters.map((info) => {
             return (
               <div
                 key={info.id}

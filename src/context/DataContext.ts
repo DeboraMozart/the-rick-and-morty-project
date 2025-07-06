@@ -33,6 +33,7 @@ interface Characters {
 interface DataContextType {
     infoEpisodes: Episodes[];
     allEpisodes: Episodes[];
+    allCharacters: Characters[];
     infoCharacters: Characters[];
     homePage: number;
     charactersPage: number;
