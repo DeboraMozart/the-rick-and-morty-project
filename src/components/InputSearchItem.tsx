@@ -1,4 +1,3 @@
-import { useSearch } from "@/hooks/useSearch";
 import React from "react";
 import { useFetchContent } from "@/context/DataContext";
 export default function InputSearchItem() {

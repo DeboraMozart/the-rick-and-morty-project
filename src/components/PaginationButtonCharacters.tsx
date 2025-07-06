@@ -3,7 +3,7 @@ import React from "react";
 import { MdNavigateBefore } from "react-icons/md";
 import { MdNavigateNext } from "react-icons/md";
 import { useFetchContent } from "@/context/DataContext";
-import { SiHomepage } from "react-icons/si";
+
 
 export default function PaginationButtonCharacters() {
   const { charactersPage, setCharactersPage } = useFetchContent();
